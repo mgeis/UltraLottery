@@ -22,7 +22,7 @@ class PdfTest {
 
     @Test
     def void tryThis() {
-        def reader = new PdfReader("/Users/mgeis/Downloads/hrtickets.pdf")
+        def reader = new PdfReader("./src/test/resources/hrtickets.pdf")
         def parser = new PdfReaderContentParser(reader)
         TextExtractionStrategy strategy
         def headersSeen = false
