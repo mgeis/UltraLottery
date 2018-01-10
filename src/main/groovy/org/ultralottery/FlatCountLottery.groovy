@@ -1,7 +1,5 @@
 package org.ultralottery
 
-import org.ultralottery.Lottery
-
 /**
  * Created by mgeis on 12/4/15.
  */

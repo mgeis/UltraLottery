@@ -1,16 +1,18 @@
 package org.ultralottery
 
 import org.ultralottery.data.Hardrock
+import org.ultralottery.data.Wasatch
 import org.ultralottery.data.WesternStates
 
 import static org.ultralottery.util.ConsoleUtils.readLineWithDefault
+import static org.ultralottery.util.ConsoleUtils.readTimed
 
 /**
  * Created by mgeis on 12/4/15.
  */
 class Configurator {
     //could be file or URL driven later, for now it's console driven
-    static final YEAR_DEFAULT = "2016" //TODO use enum to get latest
+    static final YEAR_DEFAULT = "2018" //TODO use enum to get latest
     static final EXECUTIONS_DEFAULT = "10000"
     static final RUNNER_COUNT_DEFAULT = 270 //TODO move to enum for race
 
@@ -19,13 +21,19 @@ class Configurator {
         validateMemberOf("data type", type, ["user", "year"])
     }
 
-    def races = ["WS": WesternStates, "HR": Hardrock]
+    def races = ["WS": WesternStates, "HR": Hardrock, "AC" : "AngelesCrest", "WAS" : Wasatch]
 
     def getRace() {
         def type = readLineWithDefault("Which race?: [WS]", "WS", null).toUpperCase()
-        def code = validateMemberOf("race", type, ["WS", "HR"])
+        def code = validateMemberOf("race", type, ["WS", "HR", "AC", "WAS"])
         def foundEnum = races[code]
         foundEnum
+    }
+
+    def getSpeedInput() {
+        String s = readTimed("Type the word 'cat' as many times as you can in five seconds.  GO!:", 5000)
+        def tokens = s.tokenize("\n").findAll {it.equals("cat") }
+        tokens.size()
     }
 
     //TODO add support for other lotteries
